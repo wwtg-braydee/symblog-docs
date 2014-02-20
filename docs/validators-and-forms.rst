@@ -187,7 +187,7 @@ come back to that later.
     Lets take a quick aside to talk about the use of namespaces in Symfony2. The entity class
     we have created sets the namespace to ``Blogger\BlogBundle\Entity``. As Symfony2
     autoloading supports the
-    `PSR-0 standard <http://groups.google.com/group/php-standards/web/psr-0-final-proposal?pli=1>`_
+    `PSR-0 standard <http://www.php-fig.org/psr/psr-0/>`_
     the namespace directly maps to the Bundle folder structure. The ``Enquiry`` entity class
     is located at ``src/Blogger/BlogBundle/Entity/Enquiry.php`` which ensures Symfony2 is able to
     correctly autoload the class.
