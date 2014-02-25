@@ -772,7 +772,7 @@ Update the content of the template with the following.
         <div class="blogger-notice">
             {{ flashMessage }}
         </div>
-    {% endif %}
+    {% endfor %}
 
     <p>Want to contact symblog?</p>
 
