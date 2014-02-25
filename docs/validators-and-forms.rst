@@ -281,14 +281,14 @@ use them. Replace the content of the contact action located at
 .. code-block:: php
 
     // src/Blogger/BlogBundle/Controller/PageController.php
-    public function contactAction()
+    public function contactAction(Request $request)
     {
         $enquiry = new Enquiry();
         $form = $this->createForm(new EnquiryType(), $enquiry);
 
-        $request = $this->getRequest();
-        if ($request->getMethod() == 'POST') {
-            $form->bindRequest($request);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted()) {
 
             if ($form->isValid()) {
                 // Perform some action, such as sending an email
@@ -311,9 +311,11 @@ the data of a contact enquiry. Next we create the actual form. We specify the
 
 As this controller action will deal with displaying and processing the submitted form, we
 need to check the HTTP method. Submitted forms are usually sent via ``POST``, and our
-form will be no exception. If the request method is ``POST``, a call to ``bindRequest``
-will transform the submitted data back to the members of our ``$enquiry`` object. At
-this point the ``$enquiry`` object now holds a representation of what the user submitted.
+form will be no exception. We call ``handleRequest`` on the ``$form`` object and pass the ``$request`` object.
+This will also transform the submitted data back to the members of our ``$enquiry`` object. 
+We can now check if the form is submitted using the ``isSubmitted`` method
+on the ``$form`` object.
+At this point the ``$enquiry`` object now holds a representation of what the user submitted.
 
 Next we make a check to see if the form is valid. As we have specified no validators
 at the point, the form will always be valid.
@@ -724,7 +726,7 @@ with the content below.
                 ->setBody($this->renderView('BloggerBlogBundle:Page:contactEmail.txt.twig', array('enquiry' => $enquiry)));
             $this->get('mailer')->send($message);
 
-            $this->get('session')->setFlash('blogger-notice', 'Your contact enquiry was successfully sent. Thank you!');
+            $this->get('session')->getFlashBag()->add('blogger-notice', 'Your contact enquiry was successfully sent. Thank you!');
 
             // Redirect - This is important to prevent users re-posting
             // the form if they refresh the page
