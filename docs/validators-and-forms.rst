@@ -768,9 +768,9 @@ Update the content of the template with the following.
         <h1>Contact symblog</h1>
     </header>
 
-    {% if app.session.hasFlash('blogger-notice') %}
+    {% for flashMessage in app.session.flashbag.get('blogger-notice') %}
         <div class="blogger-notice">
-            {{ app.session.flash('blogger-notice') }}
+            {{ flashMessage }}
         </div>
     {% endif %}
 
