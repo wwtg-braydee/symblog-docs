@@ -522,7 +522,7 @@ Now let's register the bundle in the kernel located at ``app/AppKernel.php``.
     {
         $bundles = array(
             // ...
-            new Symfony\Bundle\DoctrineMigrationsBundle\DoctrineMigrationsBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             // ...
         );
         // ...
@@ -1250,7 +1250,7 @@ with the following.
             {# .. #}
 
             <h3>Add Comment</h3>
-            {% render 'BloggerBlogBundle:Comment:new' with { 'blog_id': blog.id } %}
+            {{ render(controller('BloggerBlogBundle:Comment:new', { 'blog_id': blog.id } )) }}
         </section>
     {% endblock %}
 
