@@ -299,12 +299,25 @@ and ``weight`` being the value. There are a number of variations of how to use
 the ``for`` loop provided in the
 `Twig documentation <http://twig.sensiolabs.org/doc/templates.html#for>`_.
 
+Now that we have the template done, we'll be render the sidebar inside our main layout template.
+To do this, we'll want to create a new entry in our routing file located at
+
+``src/Blogger/BlogBundle/Resources/config/routing.yml``
+
+.. code-block:: yml
+    
+    # src/Blogger/BlogBundle/Resources/config/routing.yml
+    BloggerBlogBundle_sidebar:
+    pattern:  /sidebar
+    defaults: { _controller: BloggerBlogBundle:Page:sidebar }
+    requirements:
+        _method:  GET
+
 If you look back at the ``BloggerBlogBundle`` main layout template located at
 ``src/Blogger/BlogBundle/Resources/views/layout.html.twig`` you will notice
 we put a placeholder in for the sidebar block. Let's replace this now by rendering
 the new sidebar action. Remember from the previous chapter that the Twig ``render``
-method will render the contents from a controller action, in this case
-the ``sidebar`` action of the ``Page`` controller.
+method will render the contents from a controller action using the ``sidebar`` route.
 
 .. code-block:: html
 
@@ -313,7 +326,7 @@ the ``sidebar`` action of the ``Page`` controller.
     {# .. #}
 
     {% block sidebar %}
-        {% render "BloggerBlogBundle:Page:sidebar" %}
+        {% render url("BloggerBlogBundle_sidebar") %}
     {% endblock %}
 
 Finally let's add the CSS for the tag cloud. Add a new stylesheet located at
