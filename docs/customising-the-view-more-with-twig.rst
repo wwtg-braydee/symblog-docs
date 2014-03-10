@@ -529,7 +529,7 @@ the following content.
         public function getFilters()
         {
             return array(
-                'created_ago' => new \Twig_Filter_Method($this, 'createdAgo'),
+                'created_ago' => new \Twig_SimpleFilter('created_ago', array($this, 'createdAgo'))
             );
         }
 
