@@ -951,7 +951,7 @@ redirect.
         $this->assertEquals(1, $crawler->filter('.blogger-notice:contains("Your contact enquiry was successfully sent. Thank you!")')->count());
     }
 
-No when you run the PHPUnit tests they should pass. Lets now look at the final
+Now when you run the PHPUnit tests they should pass. Lets now look at the final
 step of checking the contact form submission process, step 4, checking an email
 was sent to symblog. We already know that emails will not be delivered in the
 ``test`` environment due to the following configuration.
