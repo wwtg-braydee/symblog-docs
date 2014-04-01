@@ -339,6 +339,7 @@ with the following. The statements should be placed under the existing ``use`` s
     // Import new namespaces
     use Blogger\BlogBundle\Entity\Enquiry;
     use Blogger\BlogBundle\Form\EnquiryType;
+    use Symfony\Component\HttpFoundation\Request;
 
     class PageController extends Controller
     // ..
